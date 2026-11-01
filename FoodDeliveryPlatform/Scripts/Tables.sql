@@ -94,3 +94,49 @@ CREATE TABLE promotion (
  CHECK (NOT (type = 'percentage' AND value > 100))
 );
 
+CREATE TABLE customer_order (
+ order_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+ customer_account_id integer NOT NULL REFERENCES customer_account(customer_account_id),
+ restaurant_id integer NOT NULL REFERENCES restaurant(restaurant_id),
+ driver_account_id integer REFERENCES driver_account(driver_account_id),
+ promotion_id integer REFERENCES promotion(promotion_id),
+ payment_method_id integer NOT NULL REFERENCES payment_method(payment_method_id),
+ payment_status varchar(10) NOT NULL DEFAULT 'pending' CHECK (payment_status IN ('pending','failed','paid','refunded')),
+ total_amount numeric(10,2) NOT NULL CHECK (total_amount >= 0),
+ delivery_fee numeric(6,2) NOT NULL CHECK (delivery_fee >= 0),
+ delivery_address varchar(255) NOT NULL,
+ status varchar(12) NOT NULL DEFAULT 'placed' CHECK (status IN ('placed','accepted','preparing','delivering','delivered','cancelled')),
+ placed_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ delivered_at timestamp,
+ discount_amount numeric(8,2) NOT NULL DEFAULT 0 CHECK (discount_amount >= 0),
+ CHECK (delivered_at >= placed_at),
+ CHECK (NOT (status = 'delivered' AND delivered_at IS NULL))
+);
+
+CREATE TABLE order_item (
+ order_id integer NOT NULL REFERENCES customer_order(order_id) ON DELETE CASCADE,
+ menu_item_id integer NOT NULL REFERENCES menu_item(menu_item_id),
+ quantity integer NOT NULL CHECK (quantity >= 1),
+ unit_price numeric(8,2) NOT NULL CHECK (unit_price >= 0),
+ PRIMARY KEY (order_id, menu_item_id)
+);
+
+CREATE TABLE driver_location (
+ location_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+ driver_account_id integer NOT NULL REFERENCES driver_account(driver_account_id) ON DELETE CASCADE,
+ latitude numeric(9,6) NOT NULL CHECK (latitude BETWEEN -90 AND 90),
+ longitude numeric(9,6) NOT NULL CHECK (longitude BETWEEN -180 AND 180),
+ location_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE review (
+ review_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+ order_id integer NOT NULL UNIQUE REFERENCES customer_order(order_id) ON DELETE CASCADE,
+ restaurant_rating smallint NOT NULL CHECK (restaurant_rating BETWEEN 1 AND 5),
+ driver_rating smallint CHECK (driver_rating BETWEEN 1 AND 5),
+ comment varchar(500),
+ created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+

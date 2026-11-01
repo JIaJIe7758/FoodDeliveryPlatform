@@ -8,7 +8,7 @@ SUM(o.total_amount) AS total_spent,
 FROM address a
 WHERE a.customer_account_id= c.customer_account_id) AS saved_addresses)
 FROM customer_account c
-JOIN "order" o ON o.customer_account_id= c.customer_account_id
+JOIN customer_order o ON o.customer_account_id= c.customer_account_id
 WHERE o.status= 'delivered'
 GROUP BY c.customer_account_id, c.full_name
 ORDER BY total_spent DESC
@@ -20,7 +20,7 @@ SELECT pm.type,
 COUNT(o.order_id) AS orders_made,
 ROUND(AVG(o.total_amount),2) AS avg_order_total
 FROM payment_method pm
-JOIN "order" o ON o.payment_method_id= pm.payment_method_id
+JOIN curstomer_order o ON o.payment_method_id= pm.payment_method_id
 WHERE o.status= 'delivered'
 GROUP BY pm.type
 ORDER BY orders_made DESC;
@@ -32,7 +32,7 @@ d.full_name,
 COUNT(o.order_id) AS delivered_orders,
 ROUND(AVG(r.driver_rating),2) AS avg_driver_rating
 FROM driver_account d
-JOIN "order" o ON o.driver_account_id=d.driver_account_id
+JOIN customer_order o ON o.driver_account_id=d.driver_account_id
 LEFT JOIN review r ON r.order_id= o.order_id
 WHERE o.status='delivered'
 GROUP BY d.driver_account_id, d.full_name
@@ -48,7 +48,7 @@ COUNT(o.order_id) AS completed_orders,
 SUM(o.total_amount) AS revenue
 FROM restaurant r
 JOIN restaurant_account ra ON ra.restaurant_account_id = r.restaurant_account_id
-JOIN "order" o ON o.restaurant_id = r.restaurant_id
+JOIN customer_order o ON o.restaurant_id = r.restaurant_id
 WHERE o.status = 'delivered'
 GROUP BY r.restaurant_id, r.name, ra.company_name
 ORDER BY revenue DESC;
@@ -60,7 +60,7 @@ ft.name AS food_type,
 SUM(oi.quantity) AS units_sold
 FROM menu_item mi
 JOIN order_item oi ON oi.menu_item_id = mi.menu_item_id
-JOIN "order" o ON o.order_id = oi.order_id
+JOIN customer_order o ON o.order_id = oi.order_id
 JOIN restaurant r ON r.restaurant_id = mi.restaurant_id
 JOIN food_type ft ON ft.food_type_id = r.food_type_id
 WHERE o.status = 'delivered'
@@ -74,7 +74,7 @@ LIMIT 10;
 SELECT r.name AS restaurant,
 AVG(o.delivered_at-o.placed_at) AS avg_delivery_time
 FROM restaurant r
-JOIN "order" o ON o.restaurant_id = r.restaurant_id
+JOIN customer_order o ON o.restaurant_id = r.restaurant_id
 WHERE o.status = 'delivered'
 GROUP BY r.restaurant_id, r.name
 ORDER BY avg_delivery_time DESC;
@@ -92,7 +92,7 @@ WHERE oi.menu_item_id = mi.menu_item_id);
 --Which restaurants have the most negative reviews (1 or 2 stars)?
 SELECT r.name AS restaurant, COUNT(*) AS negative_reviews
 FROM review rv
-JOIN "order" o ON o.order_id = rv.order_id
+JOIN customer_order o ON o.order_id = rv.order_id
 JOIN restaurant r ON r.restaurant_id = o.restaurant_id
 WHERE rv.restaurant_rating <= 2
 GROUP BY r.restaurant_id, r.name
@@ -101,10 +101,10 @@ ORDER BY negative_reviews DESC;
 --Question 9
 --Which are the average order values with promotion in comparison with the full price?
 SELECT (SELECT ROUND(AVG(o.total_amount), 2)
-FROM "order" o 
+FROM customer_order o 
 WHERE o.status = 'delivered' AND o.promotion_id IS NULL) AS avg_full_price),
 (SELECT ROUND(AVG(o.total_amount), 2)
-FROM "order" o
+FROM customer_order o
 WHERE o.status = 'delivered' AND o.promotion_id IS NOT NULL) AS avg_with_promotion;
 
 --Question 10
@@ -113,7 +113,7 @@ SELECT d.driver_account_id,
 d.full_name,
 COUNT(*) AS five_star_deliveries
 FROM driver_account d
-JOIN "order" o ON o.driver_account_id = d.driver_account_id
+JOIN customer_order o ON o.driver_account_id = d.driver_account_id
 JOIN review r ON r.order_id = o.order_id
 WHERE o.status = 'delivered' AND r.driver_rating = 5
 GROUP BY d.driver_account_id, d.full_name
@@ -128,7 +128,7 @@ THEN 'Before driver assigned'
 ELSE 'After driver assigned' END AS cancellation_stage,
 COUNT(*) AS cancelled_orders,
 SUM(o.total_amount) AS lost_revenue
-FROM "order" o
+FROM customer_order o
 WHERE o.status = 'cancelled'
 GROUP BY CASE WHEN o.driver_account_id IS null
 THEN 'Before driver assigned'
@@ -173,7 +173,7 @@ COUNT(DISTINCT o.restaurant_id) AS different_restaurants,
 COUNT(o.order_id) AS total_orders,
 SUM(o.total_amount) AS total_spent
 FROM customer_account c
-JOIN "order" o ON o.customer_account_id = c.customer_account_id
+JOIN customer_order o ON o.customer_account_id = c.customer_account_id
 WHERE o.status = 'delivered'
 GROUP BY c.customer_account_id, c.full_name
 HAVING COUNT(DISTINCT o.restaurant_id) >= 3
@@ -219,7 +219,7 @@ v_discount NUMERIC;
 BEGIN
 SELECT delivery_fee, discount_amount
 INTO v_fee, v_discount
-FROM "order"
+FROM customer_order
 WHERE order_id = p_order_id;
  
 SELECT SUM(quantity * unit_price)
@@ -235,7 +235,7 @@ SELECT o.order_id,
 o.total_amount AS stored_total,
 fn_calculate_order_total(o.order_id) AS calculated_total,
 o.total_amount - fn_calculate_order_total(o.order_id) AS difference
-FROM "order" o
+FROM customer_order o
 ORDER BY o.order_id
 LIMIT 10;
 
@@ -254,7 +254,7 @@ UPDATE menu_item
 SET price = ROUND(price * 1.05, 2)
 WHERE is_available = TRUE
 AND restaurant_id IN (SELECT o.restaurant_id 
-FROM "order" o
+FROM customer_order o
 JOIN review rv    ON rv.order_id = o.order_id
 JOIN restaurant r ON r.restaurant_id = o.restaurant_id
 WHERE r.status = 'active'
@@ -268,10 +268,10 @@ AND AVG(rv.restaurant_rating) >= 4.5);
 --already order with another method
 DELETE FROM payment_method pm
 WHERE NOT EXISTS (SELECT 1
-FROM "order" o
+FROM customer_order o
 WHERE o.payment_method_id = pm.payment_method_id)
 AND EXISTS (SELECT 1
-FROM "order" o2
+FROM customer_order o2
 WHERE o2.customer_account_id = pm.customer_account_id);
 
 --VIEWS
@@ -279,7 +279,7 @@ WHERE o2.customer_account_id = pm.customer_account_id);
 CREATE OR REPLACE VIEW v_customer_spending AS
 SELECT c.customer_account_id, c.full_name, COUNT(o.order_id)   AS total_orders, SUM(o.total_amount) AS total_spent
 FROM customer_account c
-JOIN "order" o ON o.customer_account_id = c.customer_account_id
+JOIN customer_order o ON o.customer_account_id = c.customer_account_id
 WHERE o.status = 'delivered'
 GROUP BY c.customer_account_id, c.full_name;
 
@@ -290,7 +290,7 @@ COUNT(o.order_id)   AS completed_orders,
 SUM(o.total_amount) AS revenue,
 AVG(o.delivered_at - o.placed_at) AS avg_delivery_time
 FROM restaurant r
-JOIN "order" o ON o.restaurant_id = r.restaurant_id
+JOIN customer_order o ON o.restaurant_id = r.restaurant_id
 WHERE o.status = 'delivered'
 GROUP BY r.restaurant_id, r.name;
 
@@ -298,7 +298,7 @@ GROUP BY r.restaurant_id, r.name;
 CREATE OR REPLACE VIEW v_driver_performance AS
 SELECT d.driver_account_id, d.full_name, COUNT(o.order_id) AS delivered_orders,ROUND(AVG(r.driver_rating), 2) AS avg_driver_rating
 FROM driver_account d
-JOIN "order" o ON o.driver_account_id = d.driver_account_id
+JOIN customer_order o ON o.driver_account_id = d.driver_account_id
 LEFT JOIN review r ON r.order_id = o.order_id
 WHERE o.status = 'delivered'
 GROUP BY d.driver_account_id, d.full_name;
@@ -315,7 +315,7 @@ GROUP BY mi.menu_item_id, mi.name, r.name;
 CREATE OR REPLACE VIEW v_cancelled_orders AS
 SELECT r.restaurant_id, r.name AS restaurant, COUNT(o.order_id) AS cancelled_orders,SUM(o.total_amount) AS lost_revenue
 FROM restaurant r
-JOIN "order" o ON o.restaurant_id = r.restaurant_id
+JOIN customer_order o ON o.restaurant_id = r.restaurant_id
 WHERE o.status = 'cancelled'
 GROUP BY r.restaurant_id, r.name;
 
