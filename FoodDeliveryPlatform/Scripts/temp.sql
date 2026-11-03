@@ -1,3 +1,4 @@
+/*
 -- =====================================================================
 -- IBD 26/27 - D2 - Food Delivery Platform
 -- schema.sql : complete database schema (tables, constraints, indexes, triggers)
@@ -584,3 +585,4 @@ create trigger trg_driver_location_before
     before insert on driver_location
     for each row execute function fn_driver_location_before();
 
+*/

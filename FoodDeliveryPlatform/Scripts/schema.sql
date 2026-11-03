@@ -1,3 +1,18 @@
+drop table if exists review cascade;
+drop table if exists driver_location cascade;
+drop table if exists order_item cascade;
+drop table if exists customer_order cascade;
+drop table if exists promotion cascade;
+drop table if exists menu_item cascade;
+drop table if exists restaurant cascade;
+drop table if exists food_type cascade;
+drop table if exists payment_method cascade;
+drop table if exists address cascade;
+drop table if exists restaurant_account cascade;
+drop table if exists driver_account cascade;
+drop table if exists customer_account cascade;
+drop table if exists account cascade;
+
 CREATE TABLE account (
     account_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,

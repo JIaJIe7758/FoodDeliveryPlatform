@@ -20,7 +20,7 @@ SELECT pm.type,
 COUNT(o.order_id) AS orders_made,
 ROUND(AVG(o.total_amount),2) AS avg_order_total
 FROM payment_method pm
-JOIN curstomer_order o ON o.payment_method_id= pm.payment_method_id
+JOIN customer_order o ON o.payment_method_id= pm.payment_method_id
 WHERE o.status= 'delivered'
 GROUP BY pm.type
 ORDER BY orders_made DESC;
