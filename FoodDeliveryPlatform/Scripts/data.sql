@@ -1,7 +1,6 @@
 
 
 --POPULATING "ACCOUNT" TABLE
-
 INSERT INTO account (email, password, account_type)
 SELECT
     'customer' || i || '@example.com',
@@ -195,6 +194,102 @@ SELECT
 FROM restaurant_account;
 
 SELECT * FROM restaurant;
+
+--POPULATING "MENU_ITEM" TABLE
+INSERT INTO menu_item (
+    restaurant_id,
+    name,
+    category,
+    price,
+    is_available
+)
+SELECT
+    restaurant.restaurant_id,
+    
+    CASE
+        WHEN food_type.name = 'Portuguese' THEN
+            CASE generate_series
+                WHEN 1 THEN 'Bacalhau'
+                WHEN 2 THEN 'Francesinha'
+                WHEN 3 THEN 'Bifana'
+                WHEN 4 THEN 'Caldo Verde'
+                ELSE 'Pastel de Nata'
+            END
+        WHEN food_type.name = 'Italian' THEN
+            CASE generate_series
+                WHEN 1 THEN 'Pizza'
+                WHEN 2 THEN 'Lasagna'
+                WHEN 3 THEN 'Carbonara'
+                WHEN 4 THEN 'Risotto'
+                ELSE 'Tiramisu'
+            END
+        WHEN food_type.name = 'Chinese' THEN
+            CASE generate_series
+                WHEN 1 THEN 'Fried Rice'
+                WHEN 2 THEN 'Dumplings'
+                WHEN 3 THEN 'Noodles'
+                WHEN 4 THEN 'Peking Duck'
+                ELSE 'Milk Tea'
+            END
+        WHEN food_type.name = 'Japanese' THEN
+            CASE generate_series
+                WHEN 1 THEN 'Sushi'
+                WHEN 2 THEN 'Ramen'
+                WHEN 3 THEN 'Tempura'
+                WHEN 4 THEN 'Udon'
+                ELSE 'Mochi'
+            END
+        WHEN food_type.name = 'American' THEN
+            CASE generate_series
+                WHEN 1 THEN 'Burger'
+                WHEN 2 THEN 'Hot Dog'
+                WHEN 3 THEN 'BBQ Ribs'
+                WHEN 4 THEN 'Chicken Wings'
+                ELSE 'Cheesecake'
+            END
+    END,
+    CASE
+        WHEN generate_series = 5 THEN 'Dessert'
+        ELSE 'Main Course'
+    END,
+    ROUND((5 + RANDOM() * 15)::NUMERIC, 2),
+    RANDOM() < 0.8
+FROM restaurant,
+     generate_series(1, 5),
+     food_type
+WHERE restaurant.food_type_id = food_type.food_type_id;
+
+SELECT * FROM menu_item;
+
+--POPULATING "PROMOTION" TABLE
+INSERT INTO promotion (
+    restaurant_id,
+    type,
+    value,
+    coupon_code,
+    start_date,
+    end_date
+)
+VALUES
+(NULL, 'percentage', 15.00, 'WELCOME15', '2026-01-01', '2026-12-31'),
+(NULL, 'percentage', 25.00, 'SUMMER25', '2026-06-01', '2026-08-31'),
+(NULL, 'percentage', 30.00, 'CHRISTMAS30', '2026-12-01', '2026-12-31'),
+(NULL, 'percentage', 10.00, 'SPRING10', '2026-03-01', '2026-05-31'),
+(NULL, 'percentage', 15.00, 'AUTUMN15', '2026-09-01', '2026-11-30'),
+(NULL, 'percentage', 20.00, 'WEEKEND20', '2026-07-04', '2026-07-05'),
+(NULL, 'percentage', 50.00, 'FLASH50', '2026-08-15', '2026-08-16'),
+(NULL, 'percentage', 12.00, 'STUDENT12', '2026-01-01', '2026-12-31'),
+(NULL, 'fixed-amount', 3.00, 'SAVE3', '2026-01-01', '2026-03-31'),
+(NULL, 'fixed-amount', 7.00, 'SAVE7', '2026-04-01', '2026-06-30'),
+(NULL, 'fixed-amount', 10.00, 'SAVE10', '2026-07-01', '2026-09-30'),
+(NULL, 'fixed-amount', 15.00, 'SAVE15', '2026-10-01', '2026-12-31'),
+(NULL, 'fixed-amount', 2.00, 'FIRSTORDER2', '2026-01-01', '2026-12-31'),
+(NULL, 'fixed-amount', 5.00, 'HOLIDAY5', '2026-12-20', '2026-12-31'),
+(NULL, 'fixed-amount', 8.00, 'SPECIAL8', '2026-05-01', '2026-05-15');
+
+SELECT * FROM promotion;
+
+
 
 
 
