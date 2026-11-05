@@ -163,65 +163,43 @@ CREATE TABLE review (
 --   *A customer_account can only be created for an account of type 'customer' same for "driver" and "restaurant"
 -- ---------------------------------------------------------------------
 
-CREATE FUNCTION check_profile_account_type() RETURNS trigger LANGUAGE plpgsql AS $$
-DECLARE actual_type varchar(10);
-BEGIN
- SELECT account_type INTO actual_type FROM account WHERE account_id =
- CASE TG_TABLE_NAME
-  WHEN 'customer_account' THEN NEW.customer_account_id
-  WHEN 'driver_account' THEN NEW.driver_account_id
-  ELSE NEW.restaurant_account_id END;
-
- IF actual_type IS DISTINCT FROM TG_ARGV[0] THEN
-  RAISE EXCEPTION 'Account type must be %', TG_ARGV[0];
- END IF;
-
- RETURN NEW;
-
-END $$;
-CREATE TRIGGER customer_profile_type BEFORE INSERT OR UPDATE ON customer_account
- FOR EACH ROW EXECUTE FUNCTION check_profile_account_type('customer');
-CREATE TRIGGER driver_profile_type BEFORE INSERT OR UPDATE ON driver_account
- FOR EACH ROW EXECUTE FUNCTION check_profile_account_type('driver');
-CREATE TRIGGER restaurant_profile_type BEFORE INSERT OR UPDATE ON restaurant_account
- FOR EACH ROW EXECUTE FUNCTION check_profile_account_type('restaurant');
-
-
--- ---------------------------------------------------------------------
--- Trigger 2: validate fixed-amount promotions
---   * A fixed-amount promotion cannot exceed the order total
---   * Prevents the final order amount from becoming negative
---   * Validation only applies when a promotion is used
--- ---------------------------------------------------------------------
-
-CREATE OR REPLACE FUNCTION check_fixed_promotion()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION check_profile_account_type()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
 DECLARE
-    promotion_type VARCHAR(20);
-    promotion_value NUMERIC(8,2);
+    actual_type VARCHAR(10);
+    account_id_value INTEGER;
 BEGIN
-    IF NEW.promotion_id IS NOT NULL THEN
-        SELECT type, value
-        INTO promotion_type, promotion_value
-        FROM promotion
-        WHERE promotion_id = NEW.promotion_id;
 
-        IF promotion_type = 'fixed-amount'
-           AND NEW.total_amount - promotion_value < 0 THEN
-            RAISE EXCEPTION 'Promotion discount exceeds order total';
-        END IF;
+    IF TG_TABLE_NAME = 'customer_account' THEN
+        account_id_value := NEW.customer_account_id;
+
+    ELSIF TG_TABLE_NAME = 'driver_account' THEN
+        account_id_value := NEW.driver_account_id;
+
+    ELSIF TG_TABLE_NAME = 'restaurant_account' THEN
+        account_id_value := NEW.restaurant_account_id;
+
+    END IF;
+
+    SELECT account_type
+    INTO actual_type
+    FROM account
+    WHERE account_id = account_id_value;
+
+    IF actual_type IS DISTINCT FROM TG_ARGV[0] THEN
+        RAISE EXCEPTION 'Account type must be %', TG_ARGV[0];
     END IF;
 
     RETURN NEW;
+
 END;
-$$ LANGUAGE plpgsql;
-CREATE TRIGGER trg_check_fixed_promotion
-BEFORE INSERT OR UPDATE ON customer_order
-FOR EACH ROW
-EXECUTE FUNCTION check_fixed_promotion();
+$$;
+
 
 -- ---------------------------------------------------------------------
--- Trigger 3: prevent multiple active orders per driver
+-- Trigger 2: prevent multiple active orders per driver
 --   * A driver can only have one active order at a time
 --   * Active orders include accepted, preparing and delivering
 --   * Delivered and cancelled orders do not count as active
