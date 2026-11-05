@@ -247,6 +247,10 @@ FROM restaurant r
 WHERE r.status = 'active' AND NOT EXISTS (select*  FROM promotion p
 WHERE p.restaurant_id = r.restaurant_id);
 
+SELECT *
+FROM promotion
+WHERE coupon_code LIKE 'WELCOME10-%';
+
 --Question 19
 --Update the price to an increase of 5% of the price of the available items 
 --of active restaurants that have at least 5 reviews and an average rating of 4.5 or more.
@@ -266,6 +270,25 @@ AND AVG(rv.restaurant_rating) >= 4.5);
 --Question 20
 --Delete saved payments that were never used in any order, but only for customers who
 --already order with another method
+
+--Verifying
+SELECT COUNT(*) AS methods_to_delete
+FROM payment_method pm
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM customer_order o
+    WHERE o.payment_method_id = pm.payment_method_id
+)
+AND EXISTS (
+    SELECT 1
+    FROM customer_order o2
+    WHERE o2.customer_account_id = pm.customer_account_id
+      AND o2.payment_method_id IS NOT NULL
+);
+
+--===========================================================================
+
+--Deleteting
 DELETE FROM payment_method pm
 WHERE NOT EXISTS (SELECT 1
 FROM customer_order o
@@ -294,6 +317,9 @@ JOIN customer_order o ON o.restaurant_id = r.restaurant_id
 WHERE o.status = 'delivered'
 GROUP BY r.restaurant_id, r.name;
 
+SELECT *
+FROM v_customer_spending;
+
 --3. Driver performance, having in consideration its deliveries and average rating
 CREATE OR REPLACE VIEW v_driver_performance AS
 SELECT d.driver_account_id, d.full_name, COUNT(o.order_id) AS delivered_orders,ROUND(AVG(r.driver_rating), 2) AS avg_driver_rating
@@ -303,6 +329,10 @@ LEFT JOIN review r ON r.order_id = o.order_id
 WHERE o.status = 'delivered'
 GROUP BY d.driver_account_id, d.full_name;
 
+SELECT *
+FROM v_driver_performance;
+
+
 --4. Units sold per menu item.
 CREATE OR REPLACE VIEW v_menu_item_sales AS
 SELECT mi.menu_item_id, mi.name AS menu_item, r.name AS restaurant, SUM(oi.quantity) AS units_sold
@@ -310,6 +340,9 @@ FROM menu_item mi
 JOIN restaurant r ON r.restaurant_id = mi.restaurant_id
 JOIN order_item oi ON oi.menu_item_id = mi.menu_item_id
 GROUP BY mi.menu_item_id, mi.name, r.name;
+
+SELECT * 
+FROM v_menu_item_sales;
 
 --5. The cancelled orders and lost revenue per restaurant
 CREATE OR REPLACE VIEW v_cancelled_orders AS
@@ -319,9 +352,13 @@ JOIN customer_order o ON o.restaurant_id = r.restaurant_id
 WHERE o.status = 'cancelled'
 GROUP BY r.restaurant_id, r.name;
 
+SELECT * 
+FROM v_cancelled_orders;
 
 
-
+SELECT
+    current_database(),
+    current_schema();
 
 
 

@@ -1,3 +1,5 @@
+BEGIN;
+
 drop table if exists review cascade;
 drop table if exists driver_location cascade;
 drop table if exists order_item cascade;
@@ -231,5 +233,5 @@ BEFORE INSERT OR UPDATE ON customer_order
 FOR EACH ROW
 EXECUTE FUNCTION check_driver_active_order();
 
-
+COMMIT;
 
