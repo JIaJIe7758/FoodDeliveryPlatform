@@ -6,7 +6,7 @@ COUNT(o.order_id) AS total_orders,
 SUM(o.total_amount) AS total_spent,
 (SELECT COUNT(*)
 FROM address a
-WHERE a.customer_account_id= c.customer_account_id) AS saved_addresses)
+WHERE a.customer_account_id= c.customer_account_id) AS saved_addresses
 FROM customer_account c
 JOIN "order" o ON o.customer_account_id= c.customer_account_id
 WHERE o.status= 'delivered'
@@ -102,7 +102,7 @@ ORDER BY negative_reviews DESC;
 --Which are the average order values with promotion in comparison with the full price?
 SELECT (SELECT ROUND(AVG(o.total_amount), 2)
 FROM "order" o 
-WHERE o.status = 'delivered' AND o.promotion_id IS NULL) AS avg_full_price),
+WHERE o.status = 'delivered' AND o.promotion_id IS NULL) AS avg_full_price,
 (SELECT ROUND(AVG(o.total_amount), 2)
 FROM "order" o
 WHERE o.status = 'delivered' AND o.promotion_id IS NOT NULL) AS avg_with_promotion;
@@ -158,7 +158,7 @@ JOIN food_type ft ON ft.food_type_id = r.food_type_id
 WHERE r.status = 'active'
 AND (p_name IS NULL OR r.name LIKE p_name)
 AND (p_food_type IS NULL OR ft.name LIKE p_food_type)
-AND (p_city IS NULL OR r.city  ILIKE p_city);
+AND (p_city IS NULL OR r.city LIKE p_city);
 END;
 $$ LANGUAGE plpgsql;
 --Now we call the function we created
@@ -303,7 +303,7 @@ LEFT JOIN review r ON r.order_id = o.order_id
 WHERE o.status = 'delivered'
 GROUP BY d.driver_account_id, d.full_name;
 
---4. Units sold per menu, having also in consideration the items never ordered
+--4. Units sold per menu item.
 CREATE OR REPLACE VIEW v_menu_item_sales AS
 SELECT mi.menu_item_id, mi.name AS menu_item, r.name AS restaurant, SUM(oi.quantity) AS units_sold
 FROM menu_item mi
