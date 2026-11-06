@@ -162,7 +162,12 @@ AND (p_city IS NULL OR r.city LIKE p_city);
 END;
 $$ LANGUAGE plpgsql;
 --Now we call the function we created
-SELECT * FROM fn_search_restaurants('%Pizza%', 'Italian', 'Lisboa');
+--1)All active restaurants, no filters
+SELECT * FROM fn_search_restaurants(NULL, NULL, NULL);
+--2) Italian restaurants in Porto
+SELECT * FROM fn_search_restaurants(NULL,'Italian','Porto');
+--3) Trying to find a specific restaurant 
+SELECT * FROM fn_search_restaurants('%258%', NULL, NULL);
 
 --Question 14
 --Who are the loyal customers and what total amount do they spend? 
@@ -254,6 +259,23 @@ WHERE coupon_code LIKE 'WELCOME10-%';
 --Question 19
 --Update the price to an increase of 5% of the price of the available items 
 --of active restaurants that have at least 5 reviews and an average rating of 4.5 or more.
+
+--First we need to see the prices of the items that will be changed
+SELECT mi.menu_item_id, mi.name, r.name AS restaurant, mi.price
+FROM menu_item mi
+JOIN restaurant r ON r.restaurant_id = mi.restaurant_id
+WHERE mi.is_available = TRUE
+AND mi.restaurant_id IN (SELECT o.restaurant_id
+FROM customer_order o
+JOIN review rv ON rv.order_id = o.order_id
+JOIN restaurant r2 ON r2.restaurant_id = o.restaurant_id
+WHERE r2.status = 'active'
+GROUP BY o.restaurant_id
+HAVING COUNT(rv.review_id) >= 5
+AND AVG(rv.restaurant_rating) >= 4.5)
+ORDER BY mi.menu_item_id;
+
+--Then, we will update, and increase the price by 5%
 UPDATE menu_item
 SET price = ROUND(price * 1.05, 2)
 WHERE is_available = TRUE
@@ -265,37 +287,42 @@ WHERE r.status = 'active'
 GROUP BY o.restaurant_id
 HAVING COUNT(rv.review_id) >= 5
 AND AVG(rv.restaurant_rating) >= 4.5);
- 
+
+--And now, we do the the same as before the update, to see that the prices are now 5% higher
+SELECT mi.menu_item_id, mi.name, r.name AS restaurant, mi.price
+FROM menu_item mi
+JOIN restaurant r ON r.restaurant_id = mi.restaurant_id
+WHERE mi.is_available = TRUE
+AND mi.restaurant_id IN (SELECT o.restaurant_id
+FROM customer_order o
+JOIN review rv ON rv.order_id = o.order_id
+JOIN restaurant r2 ON r2.restaurant_id = o.restaurant_id
+WHERE r2.status = 'active'
+GROUP BY o.restaurant_id
+HAVING COUNT(rv.review_id) >= 5
+AND AVG(rv.restaurant_rating) >= 4.5)
+ORDER BY mi.menu_item_id;
 
 --Question 20
---Delete saved payments that were never used in any order, but only for customers who
---already order with another method
+--Delete saved payment methods that were never used in any order.
 
---Verifying
+--How many payments exist
+SELECT COUNT(*) AS payment_methods_before
+FROM payment_method;
+--How many will be deleted because they were never used in any order
 SELECT COUNT(*) AS methods_to_delete
 FROM payment_method pm
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM customer_order o
-    WHERE o.payment_method_id = pm.payment_method_id
-)
-AND EXISTS (
-    SELECT 1
-    FROM customer_order o2
-    WHERE o2.customer_account_id = pm.customer_account_id
-      AND o2.payment_method_id IS NOT NULL
-);
-
---===========================================================================
-
---Deleteting
-DELETE FROM payment_method pm
-WHERE NOT EXISTS (SELECT 1
+WHERE NOT EXISTS (select*
 FROM customer_order o
-WHERE o.payment_method_id = pm.payment_method_id)
-AND EXISTS (SELECT 1
-FROM customer_order o2
-WHERE o2.customer_account_id = pm.customer_account_id);
+WHERE o.payment_method_id = pm.payment_method_id);
+--Delete
+DELETE FROM payment_method pm
+WHERE NOT EXISTS (select*
+FROM customer_order o
+WHERE o.payment_method_id = pm.payment_method_id);
+--How many exist now
+SELECT COUNT(*) AS payment_methods_after
+FROM payment_method;
 
 --VIEWS
 --1. Spending per customer
