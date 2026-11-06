@@ -39,8 +39,8 @@ The implementation includes:
 ## Installation
 
 1. Create a PostgreSQL database.
-2. Execute `schema.sql` to create the tables and constraints.
-3. Execute `procedures.sql` to implement functions and triggers.
+2. Execute `schema.sql` to create the tables, triggers and constraints.
+3. Execute `procedures.sql` to implement functions.
 4. Execute `data.sql` to insert sample data.
 5. Execute `queries.sql` one by one to check it's output.
 
