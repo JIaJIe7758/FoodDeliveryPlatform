@@ -413,7 +413,7 @@ CROSS JOIN LATERAL (
     END AS discount
 ) calc;
 
---SELECT * FROM customer_order;
+SELECT * FROM customer_order;
 
 -- POPULATING "ORDER_ITEM" TABLE
 INSERT INTO order_item (order_id, menu_item_id, quantity, unit_price)
