@@ -147,20 +147,7 @@ ORDER BY r.city, r.delivery_fee;
 --Search active restaurants by name, food type and city.
 --We create the function fn_search_restaurants.
 --A parameter set to NULL means that there is no filter on that field.
-CREATE OR REPLACE FUNCTION fn_search_restaurants(p_name VARCHAR, p_food_type VARCHAR, p_city VARCHAR)
-RETURNS TABLE (res_id INTEGER, res_name VARCHAR,res_food_type VARCHAR, res_city VARCHAR)
-AS $$
-BEGIN
-RETURN QUERY
-SELECT r.restaurant_id, r.name, ft.name, r.city
-FROM restaurant r
-JOIN food_type ft ON ft.food_type_id = r.food_type_id
-WHERE r.status = 'active'
-AND (p_name IS NULL OR r.name LIKE p_name)
-AND (p_food_type IS NULL OR ft.name LIKE p_food_type)
-AND (p_city IS NULL OR r.city LIKE p_city);
-END;
-$$ LANGUAGE plpgsql;
+
 --Now we call the function we created
 --1)All active restaurants, no filters
 SELECT * FROM fn_search_restaurants(NULL, NULL, NULL);
@@ -214,28 +201,8 @@ WHERE dl2.driver_account_id = d.driver_account_id);
 --Checking to see if the stored total in each order is the same as the calculated total at the end.
 --For that we created the function fn_calculate_order_total: total= sum(unit_price* quantity) + delivery_fee - discont.
 --A difference of 0 means that the order is consistent.
-CREATE OR REPLACE FUNCTION fn_calculate_order_total(p_order_id INTEGER)
-RETURNS NUMERIC
-AS $$
-DECLARE
-v_items NUMERIC;
-v_fee NUMERIC;
-v_discount NUMERIC;
-BEGIN
-SELECT delivery_fee, discount_amount
-INTO v_fee, v_discount
-FROM customer_order
-WHERE order_id = p_order_id;
- 
-SELECT SUM(quantity * unit_price)
-INTO v_items
-FROM order_item
-WHERE order_id = p_order_id;
- 
-RETURN v_items + v_fee - v_discount;
-END;
-$$ LANGUAGE plpgsql;
- 
+
+-- Now we call the function we created
 SELECT o.order_id,
 o.total_amount AS stored_total,
 fn_calculate_order_total(o.order_id) AS calculated_total,
@@ -332,6 +299,8 @@ FROM customer_account c
 JOIN customer_order o ON o.customer_account_id = c.customer_account_id
 WHERE o.status = 'delivered'
 GROUP BY c.customer_account_id, c.full_name;
+
+SELECT * FROM v_customer_spending;
 
 --2. Restaurant performance, having in consideration its orders, revenue and its delivery time
 CREATE OR REPLACE VIEW v_restaurant_performance AS
