@@ -15,6 +15,10 @@ drop table if exists driver_account cascade;
 drop table if exists customer_account cascade;
 drop table if exists account cascade;
 
+
+-- Centralizes authentication data shared by all account types.
+-- Customer, driver and restaurant-specific attributes are stored
+-- in separate tables to avoid unnecessary NULL values.
 CREATE TABLE account (
     account_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -24,6 +28,9 @@ CREATE TABLE account (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+
+-- Each profile uses the account_id as both its primary key
+-- and foreign key, implementing a one-to-one relationship.
 CREATE TABLE customer_account (
     customer_account_id INTEGER PRIMARY KEY
         REFERENCES account(account_id) ON DELETE CASCADE,
@@ -52,6 +59,8 @@ CREATE TABLE restaurant_account (
     nif CHAR(9) NOT NULL CHECK (nif ~ '^[0-9]{9}$')
 );
 
+
+-- A customer can register multiple delivery addresses.
 CREATE TABLE address (
  address_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
  customer_account_id integer NOT NULL REFERENCES customer_account(customer_account_id) ON DELETE CASCADE,
@@ -75,6 +84,8 @@ CREATE TABLE food_type (
  name varchar(50) NOT NULL UNIQUE
 );
 
+-- Restaurant accounts are separated from physical restaurants,
+-- allowing one account to manage multiple establishments.
 CREATE TABLE restaurant (
  restaurant_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
  restaurant_account_id integer NOT NULL REFERENCES restaurant_account(restaurant_account_id) ON DELETE RESTRICT,
@@ -99,6 +110,10 @@ CREATE TABLE menu_item (
  is_available boolean NOT NULL DEFAULT true
 );
 
+
+-- Promotions can be restaurant-specific or platform-wide.
+-- A NULL restaurant_id represents a platform-wide promotion.
+-- Percentage discounts are limited to 100%.
 CREATE TABLE promotion (
  promotion_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
  restaurant_id integer REFERENCES restaurant(restaurant_id) ON DELETE CASCADE,
@@ -111,6 +126,9 @@ CREATE TABLE promotion (
  CHECK (NOT (type = 'percentage' AND value > 100))
 );
 
+
+-- Driver and promotion references are optional, as orders may be
+-- placed without an assigned driver or an applied promotion.
 CREATE TABLE customer_order (
  order_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
  customer_account_id integer NOT NULL REFERENCES customer_account(customer_account_id),
@@ -130,6 +148,10 @@ CREATE TABLE customer_order (
  CHECK (NOT (status = 'delivered' AND delivered_at IS NULL))
 );
 
+
+-- Unit prices are stored separately from menu prices to preserve
+-- the original price charged when an order was placed.
+-- The composite primary key prevents duplicate menu items within the same order.
 CREATE TABLE order_item (
  order_id integer NOT NULL REFERENCES customer_order(order_id) ON DELETE CASCADE,
  menu_item_id integer NOT NULL REFERENCES menu_item(menu_item_id),
@@ -146,6 +168,9 @@ CREATE TABLE driver_location (
  location_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+
+-- Each order can have at most one review, enforced by UNIQUE(order_id).
+-- Driver ratings are optional because some orders may not have an assigned driver.
 CREATE TABLE review (
  review_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
  order_id integer NOT NULL UNIQUE REFERENCES customer_order(order_id) ON DELETE CASCADE,
@@ -154,6 +179,10 @@ CREATE TABLE review (
  comment varchar(500),
  created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+
+-- Additional business rules requiring cross-table validation
+-- are implemented separately using triggers.
 
 
 -- =====================================================================
