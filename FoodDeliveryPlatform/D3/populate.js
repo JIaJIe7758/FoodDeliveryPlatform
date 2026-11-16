@@ -52,11 +52,11 @@ const categories = [
 ];
 
 const cities = [
+    { name: "Lisbon", latitude: 38.7223, longitude: -9.1393 },
     { name: "Porto", latitude: 41.1579, longitude: -8.6291 },
     { name: "Setubal", latitude: 38.5244, longitude: -8.8882 },
     { name: "Coimbra", latitude: 40.2033, longitude: -8.4103 },
-    { name: "Braga", latitude: 41.5454, longitude: -8.4265 },
-    { name: "Lisbon", latitude: 38.7223, longitude: -9.1393 }
+    { name: "Braga", latitude: 41.5454, longitude: -8.4265 }
 ];
 
 const restaurants = [];
@@ -70,12 +70,10 @@ for (let i = 1; i <= 20; i++) {
 
     const menu = menus[foodType].map((dish, index) => {
 
-        // Pizza and Lasagna at restaurant 1
-        // are always available.
+        // Pizza and Lasagna at restaurant 1 are always available.
         let available = true;
 
-        // Some dishes in other restaurants
-        // are unavailable.
+        // Some dishes in other restaurants are unavailable.
         if (i !== 1 && index === 3 && i % 2 === 0) {
             available = false;
         }
@@ -154,8 +152,7 @@ for (let i = 208; i < 258; i++) {
 
     const consent = i % 2 === 0;
 
-    // Locations around Porto, with some drivers
-    // closer to Restaurant 251.
+    // Locations around Porto, with some drivers closer to Restaurant 251.
     const longitude = -8.6291 + (index % 10) * 0.002;
     const latitude = 41.1579 + (index % 10) * 0.002;
 
@@ -389,8 +386,7 @@ let gpsId = 1;
 
 for (let i = 208; i < 258; i++) {
 
-    // Only drivers with location sharing consent
-    // have GPS history.
+    // Only drivers with location sharing consent have GPS history.
     if (i % 2 === 0) {
 
         for (let j = 1; j <= 3; j++) {
