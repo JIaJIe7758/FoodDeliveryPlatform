@@ -8,23 +8,7 @@
 db = db.getSiblingDB("food_delivery");
 
 // -----------------------------------------------------
-// 1. CLEAN DATABASE
-// -----------------------------------------------------
-
-db.orders.drop();
-db.restaurants.drop();
-db.drivers.drop();
-db.driver_locations.drop();
-
-db.createCollection("orders");
-db.createCollection("restaurants");
-db.createCollection("drivers");
-db.createCollection("driver_locations");
-
-print("Collections created.");
-
-// -----------------------------------------------------
-// 2. RESTAURANTS
+// 1. RESTAURANTS
 // -----------------------------------------------------
 
 const foodTypes = [
@@ -126,7 +110,7 @@ db.restaurants.insertMany(restaurants);
 print("Restaurants inserted: " + db.restaurants.countDocuments());
 
 // -----------------------------------------------------
-// 3. DRIVERS
+// 2. DRIVERS
 // -----------------------------------------------------
 
 const drivers = [];
@@ -184,7 +168,7 @@ db.drivers.createIndex({
 print("Drivers inserted: " + db.drivers.countDocuments());
 
 // -----------------------------------------------------
-// 4. ORDERS
+// 3. ORDERS
 // -----------------------------------------------------
 
 const orders = [];
@@ -378,7 +362,7 @@ db.orders.insertMany(orders);
 print("Orders inserted: " + db.orders.countDocuments());
 
 // -----------------------------------------------------
-// 5. DRIVER LOCATIONS (GPS HISTORY)
+// 4. DRIVER LOCATIONS (GPS HISTORY)
 // -----------------------------------------------------
 
 const gpsLocations = [];
@@ -418,7 +402,7 @@ db.driver_locations.insertMany(gpsLocations);
 print("GPS locations inserted: " + db.driver_locations.countDocuments());
 
 // -----------------------------------------------------
-// 6. FINAL VERIFICATION
+// 5. FINAL VERIFICATION
 // -----------------------------------------------------
 
 print("");
