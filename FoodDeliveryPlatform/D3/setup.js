@@ -130,6 +130,29 @@ db.runCommand({
                             }
                         },
 
+                        status_history: {
+                            bsonType: "array",
+                            items: {
+                                bsonType: "object",
+                                required: ["status", "at"],
+                                properties: {
+                                    status: {
+                                        enum: [
+                                            "placed",
+                                            "accepted",
+                                            "preparing",
+                                            "delivering",
+                                            "delivered",
+                                            "cancelled"
+                                        ]
+                                    },
+                                    at: {
+                                        bsonType: "date"
+                                    }
+                                }
+                            }
+                        },
+
                         promotion_id: {
                             bsonType: ["int", "null"]
                         },
@@ -320,7 +343,7 @@ db.runCommand({
                 // GeoJSON Point [longitude, latitude]
                 location: {
                     bsonType: "object",
-                    required: [ "type", "coordinates"],
+                    required: ["type", "coordinates"],
                     properties: {
                         type: {
                             enum: ["Point"]
@@ -512,6 +535,33 @@ db.runCommand({
 
                 location_sharing_consent: {
                     bsonType: "bool"
+                },
+
+                last_location: {
+                    bsonType: ["object", "null"],
+                    required: ["point", "recorded_at"],
+                    properties: {
+                        point: {
+                            bsonType: "object",
+                            required: ["type", "coordinates"],
+                            properties: {
+                                type: {
+                                    enum: ["Point"]
+                                },
+                                coordinates: {
+                                    bsonType: "array",
+                                    minItems: 2,
+                                    maxItems: 2,
+                                    items: {
+                                        bsonType: "double"
+                                    }
+                                }
+                            }
+                        },
+                        recorded_at: {
+                            bsonType: "date"
+                        }
+                    }
                 }
             }
         }
@@ -519,5 +569,9 @@ db.runCommand({
 
     validationLevel: "strict",
     validationAction: "error"
+});
+
+db.drivers.createIndex({
+    "last_location.point": "2dsphere"
 });
 
