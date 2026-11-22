@@ -21,50 +21,85 @@ use food_delivery;
 //The prices in our data are random (data.sql uses RANDOM()), so we do not write them by hand:
 // We copy them from the menu at the time of the purchase, as the requirements say. This way the order always matches the menu.
 // First we find the dishes
+
 const pizza = db.restaurants.findOne(
-  { _id: 1, menu: { $elemMatch: { name: "Pizza", is_available: true } } },
-  { "menu.$": 1, delivery_fee: 1 }
+    { _id: 1, menu: { $elemMatch: { name: "Pizza", is_available: true } } },
+    { "menu.$": 1, delivery_fee: 1, name: 1, city: 1, food_type: 1 }
 );
+
 const lasagna = db.restaurants.findOne(
-  { _id: 1, menu: { $elemMatch: { name: "Lasagna", is_available: true } } },
-  { "menu.$": 1 }
+    { _id: 1, menu: { $elemMatch: { name: "Lasagna", is_available: true } } },
+    { "menu.$": 1 }
 );
-//"const" saves the result of the query in a variable, so that we can use it in the next steps.
-// $elemMatch makes the same element of the menu array match both conditions.
-//"menu.$": 1 shows only the dish that matched (the Pizza/Lasagna), not the whole menu.
-//If one of the dishes is not available in our data, findOne will return nothing and give an error, so we need to change the dish.
 
-//We then take the values out of the result
-const pizzaPrice   = Number(pizza.menu[0].price);
+// Check that both dishes exist
+if (!pizza || !lasagna) {
+    throw new Error("Pizza or Lasagna not available in restaurant 1");
+}
+
+// Prices for calculation
+const pizzaPrice = Number(pizza.menu[0].price);
 const lasagnaPrice = Number(lasagna.menu[0].price);
-const deliveryFee  = Number(pizza.delivery_fee);
+const deliveryFee = Number(pizza.delivery_fee);
 
-//Then we calculate the total.
-//total_amount = items (unit_price x quantity) + delivery_fee - discount_amount
-const total = Math.round((1 * pizzaPrice + 2 * lasagnaPrice + deliveryFee - 0) * 100) / 100;
+// Calculate total
+const total = Math.round(
+    (pizzaPrice + 2 * lasagnaPrice + deliveryFee) * 100
+) / 100;
 
-//After that we insert the order with its embedded items, using the values calculated.
+// Insert order
 db.orders.insertOne({
-  _id: 5001,
-  status: "placed",
-  placed_at: new Date(),
-  delivery_address: "Street 1, 1000-001 Porto",
-  customer:   { customer_account_id: 1 },
-  restaurant: { restaurant_id: 1, name: "Restaurant 251", city: "Porto", food_type: "Italian" },
-  payment:    { payment_method_id: 1, status: "pending" },
-  items: [
-    { menu_item_id: pizza.menu[0].menu_item_id,   name: "Pizza",   category: "Main Course",
-      quantity: 1, unit_price: pizzaPrice },
-    { menu_item_id: lasagna.menu[0].menu_item_id, name: "Lasagna", category: "Main Course",
-      quantity: 2, unit_price: lasagnaPrice }
-  ],
-  delivery_fee: deliveryFee,
-  discount_amount: 0,
-  total_amount: total,
-  status_history: [ { status: "placed", at: new Date() } ]
+    _id: 5001,
+    status: "placed",
+    placed_at: new Date(),
+    delivery_address: "Street 1, 1000-001 Porto",
+
+    customer: {
+        customer_account_id: 1
+    },
+
+    restaurant: {
+        restaurant_id: 1,
+        name: pizza.name,
+        city: pizza.city,
+        food_type: pizza.food_type.name
+    },
+
+    payment: {
+        payment_method_id: 1,
+        status: "pending"
+    },
+
+    items: [
+        {
+            menu_item_id: pizza.menu[0].menu_item_id,
+            name: pizza.menu[0].name,
+            category: pizza.menu[0].category,
+            quantity: 1,
+            unit_price: pizza.menu[0].price
+        },
+        {
+            menu_item_id: lasagna.menu[0].menu_item_id,
+            name: lasagna.menu[0].name,
+            category: lasagna.menu[0].category,
+            quantity: 2,
+            unit_price: lasagna.menu[0].price
+        }
+    ],
+
+    delivery_fee: pizza.delivery_fee,
+    discount_amount: NumberDecimal("0"),
+    total_amount: NumberDecimal(total.toFixed(2)),
+
+    status_history: [
+        {
+            status: "placed",
+            at: new Date()
+        }
+    ]
 });
 
-db.orders.findOne({ _id: 5001 });     // shows the new order
+db.orders.findOne({ _id: 5001 }); // shows the new order
 
 //2. New GPS point of driver 208, who is online and shares the location.
 //The point is inserted in the time-series collection , and the driver's last position is updated,
