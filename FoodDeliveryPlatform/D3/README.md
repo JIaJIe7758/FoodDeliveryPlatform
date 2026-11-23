@@ -25,41 +25,41 @@ In this phase of the project, we did the setup in MongoDB with the data model an
 
 ## Analysis and Justification of NoSQL
 
-## 1. Identification of the data
+### 1. Identification of the data
  We reviewed each table of our PostgreSQL database and how the application uses it. We then considered whether the data is always read together with another entity, whether records of the same type need different attributes, whether it grows very fast, and whether it changes often. Based on this criteria, we selected four components to MongoDB: customer orders with their items, customer reviews, restaurants with their food types and menus, and drivers with their locations. Accounts, customers, addresses, payment methods and promotions stay in PostgreSQL.
 
-## 2. Justification
-### Customer Orders and Order Items
+### 2. Justification
+#### Customer Orders and Order Items
 The orders and order items were two different tables in our D2 database, but an order item has no meaning outside its order, and an order is also never shown without its items. So, for that reason, in MongoDB the items are embedded in the order. That way one document is read instead of joining those two tables. For example, an order with two burgers and one cheesecake would include all three items in a single embedded array.
 
 In PostgreSQL, the order and its items only store the ids of the restaurant, the driver and the dish, and the names are in other tables. In MongoDB, next to these ids, the order also keeps a copy of the dish name and category (from menu_item), the restaurant’s name and city (from restaurant), the food type (from food_type), and the driver’s name and vehicle (from driver_account). These are copied when the order is placed, and this way, the order history does not change if a restaurant decides to rename a dish, and the queries can show the names without a $lookup.
 
 The status of the order changes several times, from placed to delivered. Each change is added to a status history list inside the order, so that the whole history stays in one document. 
 
-### Customer Reviews
+#### Customer Reviews
 In the original PostgreSQL implementation, the reviews are stored separately from the orders, even though each review belongs to one specific order. 
 
 Keeping the review inside the order document means the system can load the customer’s feedback and the order details at the same time. 
 
-### Drivers and Driver Locations
+#### Drivers and Driver Locations
 The driver’s availability and position changes many times during a shift. The driver document keeps the last known position, and with 2dsphere index the platform finds the available drivers near a restaurant with just a single geospatial query.
 
 Each location update creates a new record with coordinates and a time, and these are never updated, they are searched by driver and time, and there are many of them. For this reason, they are not embedded in the driver, the list would grow without limit. They are stored in a separate collection, driver_locations, and each point references its driver through driver_account_id. 
 
-### Restaurant, Food Types and Menu Items
+#### Restaurant, Food Types and Menu Items
 Showing a restaurant with its food type and menu required a JOIN between three tables, although the menu is always shown with its restaurant and has no meaning without it. 
 
 In MongoDB, the food type and the menu are embedded in the restaurant, and that way the restaurant and its whole menu are read with one query. For example, an Italian restaurant has an array with Pizza, Lasagna and Risotto, each with its price and availability. Menu items could also need different attributes depending on the type of food (for example, sizes of pizza or the number of pieces of sushi). In a relational table this would mean many empty columns. However, in MongoDB each item can store only the fields it needs. In our current model all items have the same fields, but MongoDB would make this easy to add.
 
-## 3. What stays in PostgreSQL and the referencing done
+### 3. What stays in PostgreSQL and the referencing done
 Customers, payment methods and promotions are used by many orders. For example, the same customer can place dozens of orders, and the same coupon can be used by many customers. If each order keeps a copy of this, the same personal and payment information would be repeated in every order, and a change, such as a new email, would have to be updated in all of them. For this reason, each order only stores their id (customer_account_id, payment_method_id and promotion_id). This is different from the items and the review, which belong to a single order, so they are embedded. 
 Since their structure is fixed and their rules are already enforced in the relational model, they stay in PostgreSQL. 
 
-## 3. Alternative NoSQL Databases
-### Redis (Key-Value Database)
+### 4. Alternative NoSQL Databases
+#### Redis (Key-Value Database)
 Redis could be used to store data that is accessed frequently, such as restaurant menus and their availability, so that many customers opening the same restaurant page do not query the main database every time. It could also keep each driver’s current availability (available, busy or offline), which changes often and needs fast access. The permanent records would still be kept in the main database though.
 
-### Neo4j (Graph Database)
+#### Neo4j (Graph Database)
 A graph database could be used to recommend restaurants to customers. Customers and restaurants would be nodes, connected whenever a customer orders from a restaurant. This makes it easier to suggest restaurants based on what similar customers have ordered before. For example, the typical example we see of “customers who ordered from this restaurant also ordered from this other restaurant”. In a relational database, this would require JOINs.
 
 ## Notes on IDs
