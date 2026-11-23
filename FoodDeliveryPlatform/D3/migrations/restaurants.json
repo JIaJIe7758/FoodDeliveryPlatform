@@ -1,0 +1,1182 @@
+[
+  {
+    "_id": { "$numberInt": "1" },
+    "city": "Porto",
+    "menu": [
+      {
+        "name": "Pizza",
+        "price": { "$numberDecimal": "5.37" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "8" }
+      },
+      {
+        "name": "Lasagna",
+        "price": { "$numberDecimal": "8.01" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "28" }
+      },
+      {
+        "name": "Carbonara",
+        "price": { "$numberDecimal": "6.30" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "48" }
+      },
+      {
+        "name": "Risotto",
+        "price": { "$numberDecimal": "16.66" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "68" }
+      },
+      {
+        "name": "Tiramisu",
+        "price": { "$numberDecimal": "7.86" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "88" }
+      }
+    ],
+    "name": "Restaurant 251",
+    "status": "active",
+    "street": "Street 251",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.629100" },
+        { "$numberDouble": "41.157900" }
+      ]
+    },
+    "food_type": {
+      "name": "Italian",
+      "food_type_id": { "$numberInt": "2" }
+    },
+    "telephone": "900000251",
+    "postal_code": "1000-251",
+    "delivery_fee": { "$numberDecimal": "1.12" },
+    "restaurant_account_id": { "$numberInt": "251" }
+  },
+  {
+    "_id": { "$numberInt": "2" },
+    "city": "Setubal",
+    "menu": [
+      {
+        "name": "Fried Rice",
+        "price": { "$numberDecimal": "7.51" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "12" }
+      },
+      {
+        "name": "Dumplings",
+        "price": { "$numberDecimal": "17.55" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "32" }
+      },
+      {
+        "name": "Noodles",
+        "price": { "$numberDecimal": "11.62" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "52" }
+      },
+      {
+        "name": "Peking Duck",
+        "price": { "$numberDecimal": "19.79" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "72" }
+      },
+      {
+        "name": "Milk Tea",
+        "price": { "$numberDecimal": "11.96" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "92" }
+      }
+    ],
+    "name": "Restaurant 252",
+    "status": "active",
+    "street": "Street 252",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.888200" },
+        { "$numberDouble": "38.524400" }
+      ]
+    },
+    "food_type": {
+      "name": "Chinese",
+      "food_type_id": { "$numberInt": "3" }
+    },
+    "telephone": "900000252",
+    "postal_code": "1000-252",
+    "delivery_fee": { "$numberDecimal": "1.42" },
+    "restaurant_account_id": { "$numberInt": "252" }
+  },
+  {
+    "_id": { "$numberInt": "3" },
+    "city": "Coimbra",
+    "menu": [
+      {
+        "name": "Sushi",
+        "price": { "$numberDecimal": "5.67" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "16" }
+      },
+      {
+        "name": "Ramen",
+        "price": { "$numberDecimal": "6.74" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "36" }
+      },
+      {
+        "name": "Tempura",
+        "price": { "$numberDecimal": "15.61" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "56" }
+      },
+      {
+        "name": "Udon",
+        "price": { "$numberDecimal": "16.76" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "76" }
+      },
+      {
+        "name": "Mochi",
+        "price": { "$numberDecimal": "16.39" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "96" }
+      }
+    ],
+    "name": "Restaurant 253",
+    "status": "active",
+    "street": "Street 253",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.410300" },
+        { "$numberDouble": "40.203300" }
+      ]
+    },
+    "food_type": {
+      "name": "Japanese",
+      "food_type_id": { "$numberInt": "4" }
+    },
+    "telephone": "900000253",
+    "postal_code": "1000-253",
+    "delivery_fee": { "$numberDecimal": "2.22" },
+    "restaurant_account_id": { "$numberInt": "253" }
+  },
+  {
+    "_id": { "$numberInt": "4" },
+    "city": "Braga",
+    "menu": [
+      {
+        "name": "Burger",
+        "price": { "$numberDecimal": "18.23" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "20" }
+      },
+      {
+        "name": "Hot Dog",
+        "price": { "$numberDecimal": "14.82" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "40" }
+      },
+      {
+        "name": "BBQ Ribs",
+        "price": { "$numberDecimal": "12.09" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "60" }
+      },
+      {
+        "name": "Chicken Wings",
+        "price": { "$numberDecimal": "16.36" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "80" }
+      },
+      {
+        "name": "Cheesecake",
+        "price": { "$numberDecimal": "12.33" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "100" }
+      }
+    ],
+    "name": "Restaurant 254",
+    "status": "active",
+    "street": "Street 254",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.426500" },
+        { "$numberDouble": "41.545400" }
+      ]
+    },
+    "food_type": {
+      "name": "American",
+      "food_type_id": { "$numberInt": "5" }
+    },
+    "telephone": "900000254",
+    "postal_code": "1000-254",
+    "delivery_fee": { "$numberDecimal": "2.54" },
+    "restaurant_account_id": { "$numberInt": "254" }
+  },
+  {
+    "_id": { "$numberInt": "5" },
+    "city": "Lisbon",
+    "menu": [
+      {
+        "name": "Bacalhau",
+        "price": { "$numberDecimal": "15.62" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "4" }
+      },
+      {
+        "name": "Francesinha",
+        "price": { "$numberDecimal": "14.96" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "24" }
+      },
+      {
+        "name": "Bifana",
+        "price": { "$numberDecimal": "15.61" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "44" }
+      },
+      {
+        "name": "Caldo Verde",
+        "price": { "$numberDecimal": "15.84" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "64" }
+      },
+      {
+        "name": "Pastel de Nata",
+        "price": { "$numberDecimal": "10.18" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "84" }
+      }
+    ],
+    "name": "Restaurant 255",
+    "status": "inactive",
+    "street": "Street 255",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.139300" },
+        { "$numberDouble": "38.722300" }
+      ]
+    },
+    "food_type": {
+      "name": "Portuguese",
+      "food_type_id": { "$numberInt": "1" }
+    },
+    "telephone": "900000255",
+    "postal_code": "1000-255",
+    "delivery_fee": { "$numberDecimal": "3.08" },
+    "restaurant_account_id": { "$numberInt": "255" }
+  },
+  {
+    "_id": { "$numberInt": "6" },
+    "city": "Porto",
+    "menu": [
+      {
+        "name": "Pizza",
+        "price": { "$numberDecimal": "15.76" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "7" }
+      },
+      {
+        "name": "Lasagna",
+        "price": { "$numberDecimal": "10.57" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "27" }
+      },
+      {
+        "name": "Carbonara",
+        "price": { "$numberDecimal": "16.33" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "47" }
+      },
+      {
+        "name": "Risotto",
+        "price": { "$numberDecimal": "9.20" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "67" }
+      },
+      {
+        "name": "Tiramisu",
+        "price": { "$numberDecimal": "9.06" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "87" }
+      }
+    ],
+    "name": "Restaurant 256",
+    "status": "active",
+    "street": "Street 256",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.629100" },
+        { "$numberDouble": "41.157900" }
+      ]
+    },
+    "food_type": {
+      "name": "Italian",
+      "food_type_id": { "$numberInt": "2" }
+    },
+    "telephone": "900000256",
+    "postal_code": "1000-256",
+    "delivery_fee": { "$numberDecimal": "4.26" },
+    "restaurant_account_id": { "$numberInt": "256" }
+  },
+  {
+    "_id": { "$numberInt": "7" },
+    "city": "Setubal",
+    "menu": [
+      {
+        "name": "Fried Rice",
+        "price": { "$numberDecimal": "7.56" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "11" }
+      },
+      {
+        "name": "Dumplings",
+        "price": { "$numberDecimal": "14.50" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "31" }
+      },
+      {
+        "name": "Noodles",
+        "price": { "$numberDecimal": "9.16" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "51" }
+      },
+      {
+        "name": "Peking Duck",
+        "price": { "$numberDecimal": "10.24" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "71" }
+      },
+      {
+        "name": "Milk Tea",
+        "price": { "$numberDecimal": "13.96" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "91" }
+      }
+    ],
+    "name": "Restaurant 257",
+    "status": "active",
+    "street": "Street 257",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.888200" },
+        { "$numberDouble": "38.524400" }
+      ]
+    },
+    "food_type": {
+      "name": "Chinese",
+      "food_type_id": { "$numberInt": "3" }
+    },
+    "telephone": "900000257",
+    "postal_code": "1000-257",
+    "delivery_fee": { "$numberDecimal": "3.10" },
+    "restaurant_account_id": { "$numberInt": "257" }
+  },
+  {
+    "_id": { "$numberInt": "8" },
+    "city": "Coimbra",
+    "menu": [
+      {
+        "name": "Sushi",
+        "price": { "$numberDecimal": "13.05" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "15" }
+      },
+      {
+        "name": "Ramen",
+        "price": { "$numberDecimal": "10.78" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "35" }
+      },
+      {
+        "name": "Tempura",
+        "price": { "$numberDecimal": "13.66" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "55" }
+      },
+      {
+        "name": "Udon",
+        "price": { "$numberDecimal": "9.46" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "75" }
+      },
+      {
+        "name": "Mochi",
+        "price": { "$numberDecimal": "15.24" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "95" }
+      }
+    ],
+    "name": "Restaurant 258",
+    "status": "active",
+    "street": "Street 258",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.410300" },
+        { "$numberDouble": "40.203300" }
+      ]
+    },
+    "food_type": {
+      "name": "Japanese",
+      "food_type_id": { "$numberInt": "4" }
+    },
+    "telephone": "900000258",
+    "postal_code": "1000-258",
+    "delivery_fee": { "$numberDecimal": "1.04" },
+    "restaurant_account_id": { "$numberInt": "258" }
+  },
+  {
+    "_id": { "$numberInt": "9" },
+    "city": "Braga",
+    "menu": [
+      {
+        "name": "Burger",
+        "price": { "$numberDecimal": "10.88" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "19" }
+      },
+      {
+        "name": "Hot Dog",
+        "price": { "$numberDecimal": "16.73" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "39" }
+      },
+      {
+        "name": "BBQ Ribs",
+        "price": { "$numberDecimal": "6.14" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "59" }
+      },
+      {
+        "name": "Chicken Wings",
+        "price": { "$numberDecimal": "7.49" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "79" }
+      },
+      {
+        "name": "Cheesecake",
+        "price": { "$numberDecimal": "11.11" },
+        "category": "Dessert",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "99" }
+      }
+    ],
+    "name": "Restaurant 259",
+    "status": "active",
+    "street": "Street 259",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.426500" },
+        { "$numberDouble": "41.545400" }
+      ]
+    },
+    "food_type": {
+      "name": "American",
+      "food_type_id": { "$numberInt": "5" }
+    },
+    "telephone": "900000259",
+    "postal_code": "1000-259",
+    "delivery_fee": { "$numberDecimal": "3.00" },
+    "restaurant_account_id": { "$numberInt": "259" }
+  },
+  {
+    "_id": { "$numberInt": "10" },
+    "city": "Lisbon",
+    "menu": [
+      {
+        "name": "Bacalhau",
+        "price": { "$numberDecimal": "17.33" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "3" }
+      },
+      {
+        "name": "Francesinha",
+        "price": { "$numberDecimal": "8.92" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "23" }
+      },
+      {
+        "name": "Bifana",
+        "price": { "$numberDecimal": "10.11" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "43" }
+      },
+      {
+        "name": "Caldo Verde",
+        "price": { "$numberDecimal": "13.62" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "63" }
+      },
+      {
+        "name": "Pastel de Nata",
+        "price": { "$numberDecimal": "15.49" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "83" }
+      }
+    ],
+    "name": "Restaurant 260",
+    "status": "inactive",
+    "street": "Street 260",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.139300" },
+        { "$numberDouble": "38.722300" }
+      ]
+    },
+    "food_type": {
+      "name": "Portuguese",
+      "food_type_id": { "$numberInt": "1" }
+    },
+    "telephone": "900000260",
+    "postal_code": "1000-260",
+    "delivery_fee": { "$numberDecimal": "3.15" },
+    "restaurant_account_id": { "$numberInt": "260" }
+  },
+  {
+    "_id": { "$numberInt": "11" },
+    "city": "Porto",
+    "menu": [
+      {
+        "name": "Pizza",
+        "price": { "$numberDecimal": "16.82" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "6" }
+      },
+      {
+        "name": "Lasagna",
+        "price": { "$numberDecimal": "9.87" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "26" }
+      },
+      {
+        "name": "Carbonara",
+        "price": { "$numberDecimal": "8.28" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "46" }
+      },
+      {
+        "name": "Risotto",
+        "price": { "$numberDecimal": "12.05" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "66" }
+      },
+      {
+        "name": "Tiramisu",
+        "price": { "$numberDecimal": "8.33" },
+        "category": "Dessert",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "86" }
+      }
+    ],
+    "name": "Restaurant 261",
+    "status": "active",
+    "street": "Street 261",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.629100" },
+        { "$numberDouble": "41.157900" }
+      ]
+    },
+    "food_type": {
+      "name": "Italian",
+      "food_type_id": { "$numberInt": "2" }
+    },
+    "telephone": "900000261",
+    "postal_code": "1000-261",
+    "delivery_fee": { "$numberDecimal": "2.94" },
+    "restaurant_account_id": { "$numberInt": "261" }
+  },
+  {
+    "_id": { "$numberInt": "12" },
+    "city": "Setubal",
+    "menu": [
+      {
+        "name": "Fried Rice",
+        "price": { "$numberDecimal": "9.22" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "10" }
+      },
+      {
+        "name": "Dumplings",
+        "price": { "$numberDecimal": "6.50" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "30" }
+      },
+      {
+        "name": "Noodles",
+        "price": { "$numberDecimal": "9.78" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "50" }
+      },
+      {
+        "name": "Peking Duck",
+        "price": { "$numberDecimal": "8.16" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "70" }
+      },
+      {
+        "name": "Milk Tea",
+        "price": { "$numberDecimal": "5.30" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "90" }
+      }
+    ],
+    "name": "Restaurant 262",
+    "status": "active",
+    "street": "Street 262",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.888200" },
+        { "$numberDouble": "38.524400" }
+      ]
+    },
+    "food_type": {
+      "name": "Chinese",
+      "food_type_id": { "$numberInt": "3" }
+    },
+    "telephone": "900000262",
+    "postal_code": "1000-262",
+    "delivery_fee": { "$numberDecimal": "4.91" },
+    "restaurant_account_id": { "$numberInt": "262" }
+  },
+  {
+    "_id": { "$numberInt": "13" },
+    "city": "Coimbra",
+    "menu": [
+      {
+        "name": "Sushi",
+        "price": { "$numberDecimal": "18.30" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "14" }
+      },
+      {
+        "name": "Ramen",
+        "price": { "$numberDecimal": "7.93" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "34" }
+      },
+      {
+        "name": "Tempura",
+        "price": { "$numberDecimal": "19.52" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "54" }
+      },
+      {
+        "name": "Udon",
+        "price": { "$numberDecimal": "12.68" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "74" }
+      },
+      {
+        "name": "Mochi",
+        "price": { "$numberDecimal": "9.27" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "94" }
+      }
+    ],
+    "name": "Restaurant 263",
+    "status": "active",
+    "street": "Street 263",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.410300" },
+        { "$numberDouble": "40.203300" }
+      ]
+    },
+    "food_type": {
+      "name": "Japanese",
+      "food_type_id": { "$numberInt": "4" }
+    },
+    "telephone": "900000263",
+    "postal_code": "1000-263",
+    "delivery_fee": { "$numberDecimal": "3.40" },
+    "restaurant_account_id": { "$numberInt": "263" }
+  },
+  {
+    "_id": { "$numberInt": "14" },
+    "city": "Braga",
+    "menu": [
+      {
+        "name": "Burger",
+        "price": { "$numberDecimal": "18.30" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "18" }
+      },
+      {
+        "name": "Hot Dog",
+        "price": { "$numberDecimal": "18.91" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "38" }
+      },
+      {
+        "name": "BBQ Ribs",
+        "price": { "$numberDecimal": "5.97" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "58" }
+      },
+      {
+        "name": "Chicken Wings",
+        "price": { "$numberDecimal": "19.93" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "78" }
+      },
+      {
+        "name": "Cheesecake",
+        "price": { "$numberDecimal": "17.42" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "98" }
+      }
+    ],
+    "name": "Restaurant 264",
+    "status": "active",
+    "street": "Street 264",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.426500" },
+        { "$numberDouble": "41.545400" }
+      ]
+    },
+    "food_type": {
+      "name": "American",
+      "food_type_id": { "$numberInt": "5" }
+    },
+    "telephone": "900000264",
+    "postal_code": "1000-264",
+    "delivery_fee": { "$numberDecimal": "3.16" },
+    "restaurant_account_id": { "$numberInt": "264" }
+  },
+  {
+    "_id": { "$numberInt": "15" },
+    "city": "Lisbon",
+    "menu": [
+      {
+        "name": "Bacalhau",
+        "price": { "$numberDecimal": "8.29" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "2" }
+      },
+      {
+        "name": "Francesinha",
+        "price": { "$numberDecimal": "5.36" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "22" }
+      },
+      {
+        "name": "Bifana",
+        "price": { "$numberDecimal": "9.17" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "42" }
+      },
+      {
+        "name": "Caldo Verde",
+        "price": { "$numberDecimal": "17.77" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "62" }
+      },
+      {
+        "name": "Pastel de Nata",
+        "price": { "$numberDecimal": "10.05" },
+        "category": "Dessert",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "82" }
+      }
+    ],
+    "name": "Restaurant 265",
+    "status": "inactive",
+    "street": "Street 265",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.139300" },
+        { "$numberDouble": "38.722300" }
+      ]
+    },
+    "food_type": {
+      "name": "Portuguese",
+      "food_type_id": { "$numberInt": "1" }
+    },
+    "telephone": "900000265",
+    "postal_code": "1000-265",
+    "delivery_fee": { "$numberDecimal": "1.03" },
+    "restaurant_account_id": { "$numberInt": "265" }
+  },
+  {
+    "_id": { "$numberInt": "16" },
+    "city": "Porto",
+    "menu": [
+      {
+        "name": "Pizza",
+        "price": { "$numberDecimal": "10.12" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "5" }
+      },
+      {
+        "name": "Lasagna",
+        "price": { "$numberDecimal": "7.19" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "25" }
+      },
+      {
+        "name": "Carbonara",
+        "price": { "$numberDecimal": "9.90" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "45" }
+      },
+      {
+        "name": "Risotto",
+        "price": { "$numberDecimal": "16.64" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "65" }
+      },
+      {
+        "name": "Tiramisu",
+        "price": { "$numberDecimal": "15.75" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "85" }
+      }
+    ],
+    "name": "Restaurant 266",
+    "status": "active",
+    "street": "Street 266",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.629100" },
+        { "$numberDouble": "41.157900" }
+      ]
+    },
+    "food_type": {
+      "name": "Italian",
+      "food_type_id": { "$numberInt": "2" }
+    },
+    "telephone": "900000266",
+    "postal_code": "1000-266",
+    "delivery_fee": { "$numberDecimal": "1.41" },
+    "restaurant_account_id": { "$numberInt": "266" }
+  },
+  {
+    "_id": { "$numberInt": "17" },
+    "city": "Setubal",
+    "menu": [
+      {
+        "name": "Fried Rice",
+        "price": { "$numberDecimal": "19.10" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "9" }
+      },
+      {
+        "name": "Dumplings",
+        "price": { "$numberDecimal": "10.45" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "29" }
+      },
+      {
+        "name": "Noodles",
+        "price": { "$numberDecimal": "17.15" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "49" }
+      },
+      {
+        "name": "Peking Duck",
+        "price": { "$numberDecimal": "6.18" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "69" }
+      },
+      {
+        "name": "Milk Tea",
+        "price": { "$numberDecimal": "11.35" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "89" }
+      }
+    ],
+    "name": "Restaurant 267",
+    "status": "active",
+    "street": "Street 267",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.888200" },
+        { "$numberDouble": "38.524400" }
+      ]
+    },
+    "food_type": {
+      "name": "Chinese",
+      "food_type_id": { "$numberInt": "3" }
+    },
+    "telephone": "900000267",
+    "postal_code": "1000-267",
+    "delivery_fee": { "$numberDecimal": "4.71" },
+    "restaurant_account_id": { "$numberInt": "267" }
+  },
+  {
+    "_id": { "$numberInt": "18" },
+    "city": "Coimbra",
+    "menu": [
+      {
+        "name": "Sushi",
+        "price": { "$numberDecimal": "5.95" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "13" }
+      },
+      {
+        "name": "Ramen",
+        "price": { "$numberDecimal": "5.39" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "33" }
+      },
+      {
+        "name": "Tempura",
+        "price": { "$numberDecimal": "8.28" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "53" }
+      },
+      {
+        "name": "Udon",
+        "price": { "$numberDecimal": "7.17" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "73" }
+      },
+      {
+        "name": "Mochi",
+        "price": { "$numberDecimal": "10.53" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "93" }
+      }
+    ],
+    "name": "Restaurant 268",
+    "status": "active",
+    "street": "Street 268",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.410300" },
+        { "$numberDouble": "40.203300" }
+      ]
+    },
+    "food_type": {
+      "name": "Japanese",
+      "food_type_id": { "$numberInt": "4" }
+    },
+    "telephone": "900000268",
+    "postal_code": "1000-268",
+    "delivery_fee": { "$numberDecimal": "2.91" },
+    "restaurant_account_id": { "$numberInt": "268" }
+  },
+  {
+    "_id": { "$numberInt": "19" },
+    "city": "Braga",
+    "menu": [
+      {
+        "name": "Burger",
+        "price": { "$numberDecimal": "5.25" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "17" }
+      },
+      {
+        "name": "Hot Dog",
+        "price": { "$numberDecimal": "18.46" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "37" }
+      },
+      {
+        "name": "BBQ Ribs",
+        "price": { "$numberDecimal": "14.15" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "57" }
+      },
+      {
+        "name": "Chicken Wings",
+        "price": { "$numberDecimal": "5.87" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "77" }
+      },
+      {
+        "name": "Cheesecake",
+        "price": { "$numberDecimal": "13.40" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "97" }
+      }
+    ],
+    "name": "Restaurant 269",
+    "status": "active",
+    "street": "Street 269",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-8.426500" },
+        { "$numberDouble": "41.545400" }
+      ]
+    },
+    "food_type": {
+      "name": "American",
+      "food_type_id": { "$numberInt": "5" }
+    },
+    "telephone": "900000269",
+    "postal_code": "1000-269",
+    "delivery_fee": { "$numberDecimal": "2.84" },
+    "restaurant_account_id": { "$numberInt": "269" }
+  },
+  {
+    "_id": { "$numberInt": "20" },
+    "city": "Lisbon",
+    "menu": [
+      {
+        "name": "Bacalhau",
+        "price": { "$numberDecimal": "10.89" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "1" }
+      },
+      {
+        "name": "Francesinha",
+        "price": { "$numberDecimal": "10.82" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "21" }
+      },
+      {
+        "name": "Bifana",
+        "price": { "$numberDecimal": "14.51" },
+        "category": "Main Course",
+        "is_available": false,
+        "menu_item_id": { "$numberInt": "41" }
+      },
+      {
+        "name": "Caldo Verde",
+        "price": { "$numberDecimal": "8.77" },
+        "category": "Main Course",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "61" }
+      },
+      {
+        "name": "Pastel de Nata",
+        "price": { "$numberDecimal": "16.66" },
+        "category": "Dessert",
+        "is_available": true,
+        "menu_item_id": { "$numberInt": "81" }
+      }
+    ],
+    "name": "Restaurant 270",
+    "status": "inactive",
+    "street": "Street 270",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.139300" },
+        { "$numberDouble": "38.722300" }
+      ]
+    },
+    "food_type": {
+      "name": "Portuguese",
+      "food_type_id": { "$numberInt": "1" }
+    },
+    "telephone": "900000270",
+    "postal_code": "1000-270",
+    "delivery_fee": { "$numberDecimal": "1.46" },
+    "restaurant_account_id": { "$numberInt": "270" }
+  }
+]
