@@ -1,0 +1,902 @@
+[
+  {
+    "_id": { "$numberInt": "1" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.146000" },
+        { "$numberDouble": "38.704000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "202" }
+  },
+  {
+    "_id": { "$numberInt": "2" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.142000" },
+        { "$numberDouble": "38.708000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "204" }
+  },
+  {
+    "_id": { "$numberInt": "3" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.138000" },
+        { "$numberDouble": "38.712000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "206" }
+  },
+  {
+    "_id": { "$numberInt": "4" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.134000" },
+        { "$numberDouble": "38.716000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "208" }
+  },
+  {
+    "_id": { "$numberInt": "5" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.130000" },
+        { "$numberDouble": "38.720000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "210" }
+  },
+  {
+    "_id": { "$numberInt": "6" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.126000" },
+        { "$numberDouble": "38.724000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "212" }
+  },
+  {
+    "_id": { "$numberInt": "7" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.122000" },
+        { "$numberDouble": "38.728000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "214" }
+  },
+  {
+    "_id": { "$numberInt": "8" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.118000" },
+        { "$numberDouble": "38.732000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "216" }
+  },
+  {
+    "_id": { "$numberInt": "9" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.114000" },
+        { "$numberDouble": "38.736000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "218" }
+  },
+  {
+    "_id": { "$numberInt": "10" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.150000" },
+        { "$numberDouble": "38.700000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "220" }
+  },
+  {
+    "_id": { "$numberInt": "11" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.146000" },
+        { "$numberDouble": "38.704000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "222" }
+  },
+  {
+    "_id": { "$numberInt": "12" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.142000" },
+        { "$numberDouble": "38.708000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "224" }
+  },
+  {
+    "_id": { "$numberInt": "13" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.138000" },
+        { "$numberDouble": "38.712000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "226" }
+  },
+  {
+    "_id": { "$numberInt": "14" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.134000" },
+        { "$numberDouble": "38.716000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "228" }
+  },
+  {
+    "_id": { "$numberInt": "15" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.130000" },
+        { "$numberDouble": "38.720000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "230" }
+  },
+  {
+    "_id": { "$numberInt": "16" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.126000" },
+        { "$numberDouble": "38.724000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "232" }
+  },
+  {
+    "_id": { "$numberInt": "17" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.122000" },
+        { "$numberDouble": "38.728000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "234" }
+  },
+  {
+    "_id": { "$numberInt": "18" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.118000" },
+        { "$numberDouble": "38.732000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "236" }
+  },
+  {
+    "_id": { "$numberInt": "19" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.114000" },
+        { "$numberDouble": "38.736000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "238" }
+  },
+  {
+    "_id": { "$numberInt": "20" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.150000" },
+        { "$numberDouble": "38.700000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "240" }
+  },
+  {
+    "_id": { "$numberInt": "21" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.146000" },
+        { "$numberDouble": "38.704000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "242" }
+  },
+  {
+    "_id": { "$numberInt": "22" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.142000" },
+        { "$numberDouble": "38.708000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "244" }
+  },
+  {
+    "_id": { "$numberInt": "23" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.138000" },
+        { "$numberDouble": "38.712000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "246" }
+  },
+  {
+    "_id": { "$numberInt": "24" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.134000" },
+        { "$numberDouble": "38.716000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "248" }
+  },
+  {
+    "_id": { "$numberInt": "25" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.130000" },
+        { "$numberDouble": "38.720000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:17:13.699Z" },
+    "driver_account_id": { "$numberInt": "250" }
+  },
+  {
+    "_id": { "$numberInt": "26" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.146000" },
+        { "$numberDouble": "38.704000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "202" }
+  },
+  {
+    "_id": { "$numberInt": "27" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.142000" },
+        { "$numberDouble": "38.708000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "204" }
+  },
+  {
+    "_id": { "$numberInt": "28" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.138000" },
+        { "$numberDouble": "38.712000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "206" }
+  },
+  {
+    "_id": { "$numberInt": "29" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.134000" },
+        { "$numberDouble": "38.716000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "208" }
+  },
+  {
+    "_id": { "$numberInt": "30" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.130000" },
+        { "$numberDouble": "38.720000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "210" }
+  },
+  {
+    "_id": { "$numberInt": "31" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.126000" },
+        { "$numberDouble": "38.724000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "212" }
+  },
+  {
+    "_id": { "$numberInt": "32" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.122000" },
+        { "$numberDouble": "38.728000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "214" }
+  },
+  {
+    "_id": { "$numberInt": "33" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.118000" },
+        { "$numberDouble": "38.732000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "216" }
+  },
+  {
+    "_id": { "$numberInt": "34" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.114000" },
+        { "$numberDouble": "38.736000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "218" }
+  },
+  {
+    "_id": { "$numberInt": "35" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.150000" },
+        { "$numberDouble": "38.700000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "220" }
+  },
+  {
+    "_id": { "$numberInt": "36" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.146000" },
+        { "$numberDouble": "38.704000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "222" }
+  },
+  {
+    "_id": { "$numberInt": "37" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.142000" },
+        { "$numberDouble": "38.708000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "224" }
+  },
+  {
+    "_id": { "$numberInt": "38" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.138000" },
+        { "$numberDouble": "38.712000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "226" }
+  },
+  {
+    "_id": { "$numberInt": "39" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.134000" },
+        { "$numberDouble": "38.716000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "228" }
+  },
+  {
+    "_id": { "$numberInt": "40" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.130000" },
+        { "$numberDouble": "38.720000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "230" }
+  },
+  {
+    "_id": { "$numberInt": "41" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.126000" },
+        { "$numberDouble": "38.724000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "232" }
+  },
+  {
+    "_id": { "$numberInt": "42" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.122000" },
+        { "$numberDouble": "38.728000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "234" }
+  },
+  {
+    "_id": { "$numberInt": "43" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.118000" },
+        { "$numberDouble": "38.732000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "236" }
+  },
+  {
+    "_id": { "$numberInt": "44" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.114000" },
+        { "$numberDouble": "38.736000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "238" }
+  },
+  {
+    "_id": { "$numberInt": "45" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.150000" },
+        { "$numberDouble": "38.700000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "240" }
+  },
+  {
+    "_id": { "$numberInt": "46" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.146000" },
+        { "$numberDouble": "38.704000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "242" }
+  },
+  {
+    "_id": { "$numberInt": "47" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.142000" },
+        { "$numberDouble": "38.708000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "244" }
+  },
+  {
+    "_id": { "$numberInt": "48" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.138000" },
+        { "$numberDouble": "38.712000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "246" }
+  },
+  {
+    "_id": { "$numberInt": "49" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.134000" },
+        { "$numberDouble": "38.716000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "248" }
+  },
+  {
+    "_id": { "$numberInt": "50" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.130000" },
+        { "$numberDouble": "38.720000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T04:07:13.699Z" },
+    "driver_account_id": { "$numberInt": "250" }
+  },
+  {
+    "_id": { "$numberInt": "51" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.146000" },
+        { "$numberDouble": "38.704000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "202" }
+  },
+  {
+    "_id": { "$numberInt": "52" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.142000" },
+        { "$numberDouble": "38.708000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "204" }
+  },
+  {
+    "_id": { "$numberInt": "53" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.138000" },
+        { "$numberDouble": "38.712000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "206" }
+  },
+  {
+    "_id": { "$numberInt": "54" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.134000" },
+        { "$numberDouble": "38.716000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "208" }
+  },
+  {
+    "_id": { "$numberInt": "55" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.130000" },
+        { "$numberDouble": "38.720000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "210" }
+  },
+  {
+    "_id": { "$numberInt": "56" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.126000" },
+        { "$numberDouble": "38.724000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "212" }
+  },
+  {
+    "_id": { "$numberInt": "57" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.122000" },
+        { "$numberDouble": "38.728000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "214" }
+  },
+  {
+    "_id": { "$numberInt": "58" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.118000" },
+        { "$numberDouble": "38.732000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "216" }
+  },
+  {
+    "_id": { "$numberInt": "59" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.114000" },
+        { "$numberDouble": "38.736000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "218" }
+  },
+  {
+    "_id": { "$numberInt": "60" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.150000" },
+        { "$numberDouble": "38.700000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "220" }
+  },
+  {
+    "_id": { "$numberInt": "61" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.146000" },
+        { "$numberDouble": "38.704000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "222" }
+  },
+  {
+    "_id": { "$numberInt": "62" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.142000" },
+        { "$numberDouble": "38.708000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "224" }
+  },
+  {
+    "_id": { "$numberInt": "63" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.138000" },
+        { "$numberDouble": "38.712000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "226" }
+  },
+  {
+    "_id": { "$numberInt": "64" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.134000" },
+        { "$numberDouble": "38.716000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "228" }
+  },
+  {
+    "_id": { "$numberInt": "65" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.130000" },
+        { "$numberDouble": "38.720000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "230" }
+  },
+  {
+    "_id": { "$numberInt": "66" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.126000" },
+        { "$numberDouble": "38.724000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "232" }
+  },
+  {
+    "_id": { "$numberInt": "67" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.122000" },
+        { "$numberDouble": "38.728000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "234" }
+  },
+  {
+    "_id": { "$numberInt": "68" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.118000" },
+        { "$numberDouble": "38.732000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "236" }
+  },
+  {
+    "_id": { "$numberInt": "69" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.114000" },
+        { "$numberDouble": "38.736000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "238" }
+  },
+  {
+    "_id": { "$numberInt": "70" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.150000" },
+        { "$numberDouble": "38.700000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "240" }
+  },
+  {
+    "_id": { "$numberInt": "71" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.146000" },
+        { "$numberDouble": "38.704000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "242" }
+  },
+  {
+    "_id": { "$numberInt": "72" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.142000" },
+        { "$numberDouble": "38.708000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "244" }
+  },
+  {
+    "_id": { "$numberInt": "73" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.138000" },
+        { "$numberDouble": "38.712000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "246" }
+  },
+  {
+    "_id": { "$numberInt": "74" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.134000" },
+        { "$numberDouble": "38.716000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "248" }
+  },
+  {
+    "_id": { "$numberInt": "75" },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        { "$numberDouble": "-9.130000" },
+        { "$numberDouble": "38.720000" }
+      ]
+    },
+    "location_time": { "$date": "2026-11-05T03:57:13.699Z" },
+    "driver_account_id": { "$numberInt": "250" }
+  }
+]
