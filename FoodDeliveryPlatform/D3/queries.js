@@ -1,15 +1,10 @@
 //Online Food Delivery Platform- D3
 // queries.js - CRUD operations and aggregation pipelines
 
-//Order to run: After the migration and after the consistency tests, because the CREATE, UPDATE and DELETE parts change the data.
-
-//How to run: open MongoDB Compass, open the shell at the bottom (>_ MONGOSH) and copy and paste the queries.
-
-//The collections that we use:
-// orders -> order + embedded items + embedded review + status_history
-// restaurants -> restaurant + food_type + embedded menu
-// drivers -> driver profile + availability + last_location
-// driver_locations -> time-series collection with every GPS point
+//Order to run: setup.js -> populate.js -> queries.js
+//The queries use the data created by populate.js
+//The CREATE, UPDATE and DELETE parts change the data, so this file can only be run once.
+//To run it again, we have to run setup.js and populate.js first.
 
 //Choosing our database where our queries will run
 use food_delivery;
@@ -17,24 +12,24 @@ use food_delivery;
 
 //CREATE operations
 
-//1. A customer places an order with 2 items (1 Pizza and 2 Lasagnas from restaurant 1).
+//1. A customer places an order with 2 items (1 Pizza and 2 Lasagnas from restaurant 21).
 //The prices in our data are random (data.sql uses RANDOM()), so we do not write them by hand:
 // We copy them from the menu at the time of the purchase, as the requirements say. This way the order always matches the menu.
 // First we find the dishes
 
 const pizza = db.restaurants.findOne(
-    { _id: 1, menu: { $elemMatch: { name: "Pizza", is_available: true } } },
+    { _id: 21, menu: { $elemMatch: { name: "Pizza", is_available: true } } },
     { "menu.$": 1, delivery_fee: 1, name: 1, city: 1, food_type: 1 }
 );
 
 const lasagna = db.restaurants.findOne(
-    { _id: 1, menu: { $elemMatch: { name: "Lasagna", is_available: true } } },
+    { _id: 21, menu: { $elemMatch: { name: "Lasagna", is_available: true } } },
     { "menu.$": 1 }
 );
 
 // Check that both dishes exist
 if (!pizza || !lasagna) {
-    throw new Error("Pizza or Lasagna not available in restaurant 1");
+    throw new Error("Pizza or Lasagna not available in restaurant 21");
 }
 
 // Prices for calculation
@@ -49,7 +44,7 @@ const total = Math.round(
 
 // Insert order
 db.orders.insertOne({
-    _id: 5001,
+    _id: 481,
     status: "placed",
     placed_at: new Date(),
     delivery_address: "Street 1, 1000-001 Porto",
@@ -59,7 +54,7 @@ db.orders.insertOne({
     },
 
     restaurant: {
-        restaurant_id: 1,
+        restaurant_id: 21,
         name: pizza.name,
         city: pizza.city,
         food_type: pizza.food_type.name
@@ -99,20 +94,21 @@ db.orders.insertOne({
     ]
 });
 
-db.orders.findOne({ _id: 5001 }); // shows the new order
+db.orders.findOne({ _id: 481 }); // shows the new order
 
-//2. New GPS point of driver 208, who is online and shares the location.
-//The point is inserted in the time-series collection , and the driver's last position is updated,
+//2. New GPS point of driver 272, who is online and shares the location.
+//The point is inserted in the collection , and the driver's last position is updated,
 // so the customer can see it without having to read the whole history.
 db.driver_locations.insertOne({
-  driver_account_id: 208,
+  _id: NumberInt(151),
+  driver_account_id: 272,
   location_time: new Date(),
-  location: { type: "Point", coordinates: [-9.1340, 38.7160] }     // [longitude, latitude]
+  location: { type: "Point", coordinates: [-8.6265, 41.1605] }     // [longitude, latitude]
 });
 
 db.drivers.updateOne(
-  { _id: 208 },
-  { $set: { last_location: { point: { type: "Point", coordinates: [-9.1340, 38.7160] },
+  { _id: 272 },
+  { $set: { last_location: { point: { type: "Point", coordinates: [-8.6265, 41.1605] },
                              recorded_at: new Date() } } }
 );
 
@@ -156,7 +152,7 @@ db.orders.aggregate([
 ]);
 
 //6. Average delivery time per restaurant, slowest first
-//$project calculates the dleivery time of each order before grouping.
+//$project calculates the delivery time of each order before grouping.
 //delivered_at - placed_at gives miliseconds, so /60000 gives minutes.
 db.orders.aggregate([
   { $match: { status: "delivered" } },
@@ -224,7 +220,7 @@ db.orders.aggregate([
 ]);
 
 //11. For each driver we want how many GPS points were recorded, and the time of the first and last point.
-//It uses the time-series collection driver_locations.
+//It uses the driver_locations.
 //The GPS points only have the driver's id, so $lookup gets the driver's name from the drivers collection.
 db.driver_locations.aggregate([
   { $group: {
@@ -254,13 +250,14 @@ db.drivers.aggregate([
   { $sort: { recorded_at: -1 } }
 ]);
 
-//13. The 3 available drivers closest to Restaurant 251.
+//13. The 3 available drivers closest to Restaurant 21.
 //The 2dsphere index allows geospatial queries on the GeoJSON points.
 //$nearSphere returns the documents sorted from the closest to the farthest.
 db.drivers.createIndex({ "last_location.point": "2dsphere" });
 
 db.drivers.find(
   { availability: "available",
+    location_sharing_consent:true,
     "last_location.point": {
       $nearSphere: { $geometry: { type: "Point", coordinates: [-8.6291, 41.1579] } }
     } },
@@ -269,75 +266,121 @@ db.drivers.find(
 
 
 //UPDATE operations
-//14. The restaurant accepts order 5001.
+//14. The restaurant accepts order 481.
 // $set changes the status and $push adds the change to the history.
 // the order of events is: placed -> accepted -> preparing -> delivering -> delivered.
+
+//Before: the order 481 is still "placed"
+db.orders.findOne({ _id: 481 }, { status: 1, payment: 1, status_history: 1 });
+
 db.orders.updateOne(
-  { _id: 5001, status: "placed" },
+  { _id: 481, status: "placed" },
   { $set:  { status: "accepted", "payment.status": "paid" },
     $push: { status_history: { status: "accepted", at: new Date() } } }
 );
 
-//15. Driver 208, who is available, takes the order.
+//After: the order 481 has been accepted 
+db.orders.findOne({ _id: 481 }, { status: 1, payment: 1, status_history: 1 });
+
+
+//15. Driver 272, who is available, takes the order.
 //The driver is only assigned after the restaurant accepted the order.
+
+//Before: the driver 272 is available and the order 481 has no driver assigned
+db.drivers.findOne({ _id: 272 }, { full_name: 1, availability: 1 });
+db.orders.findOne({ _id: 481 }, { status: 1, driver: 1 });
+
 db.drivers.updateOne(
-  { _id: 208, availability: "available" },
+  { _id: 272, availability: "available" },
   { $set: { availability: "busy" } }
 );
 
 db.orders.updateOne(
-  { _id: 5001, status: "accepted" },
-  { $set: { driver: { driver_account_id: 208, full_name: "Driver 208", vehicle_type: "motorcycle" } } }
+  { _id: 481, status: "accepted" },
+  { $set: { driver: { driver_account_id: 272, full_name: "Driver 272", vehicle_type: "motorcycle" } } }
 );
+
+//After: the driver 272 is busy and is assigned to the order 481
+db.drivers.findOne({ _id: 272 }, { full_name: 1, availability: 1 });
+db.orders.findOne({ _id: 481 }, { status: 1, driver: 1 });
+
 
 //16. The order goes through the next statuses until it is delivered.
 //Each update only works if the order is in the previous status.
+
+//Before: the order 481 got accepted
+db.orders.findOne({ _id: 481 }, { status: 1, delivered_at: 1, status_history: 1 });
+
 db.orders.updateOne(
-  { _id: 5001, status: "accepted" },
+  { _id: 481, status: "accepted" },
   { $set:  { status: "preparing" },
     $push: { status_history: { status: "preparing", at: new Date() } } }
 );
 
 db.orders.updateOne(
-  { _id: 5001, status: "preparing" },
+  { _id: 481, status: "preparing" },
   { $set:  { status: "delivering" },
     $push: { status_history: { status: "delivering", at: new Date() } } }
 );
 
 db.orders.updateOne(
-  { _id: 5001, status: "delivering" },
+  { _id: 481, status: "delivering" },
   { $set:  { status: "delivered", delivered_at: new Date() },
     $push: { status_history: { status: "delivered", at: new Date() } } }
 );
 
 //The driver is again available
 db.drivers.updateOne(                        
-  { _id: 208 },
+  { _id: 272 },
   { $set: { availability: "available" } }
 );
 
+//After: the order 481 got delivered and the driver 272 is available again
+db.orders.findOne({ _id: 481 }, { status: 1, delivered_at: 1, status_history: 1 });
+db.drivers.findOne({ _id: 272 }, { full_name: 1, availability: 1 });
+
 //17. The customer reviews the delivered order
 //The filter of the status to "delivered" makes sure only delivered orders can be reviewed.
+
+//Before: the order 481 has no review
+db.orders.findOne({ _id: 481 }, { status: 1, review: 1 });
+
 db.orders.updateOne(
-  { _id: 5001, status: "delivered" },
-  { $set: { review: { review_id: 5001, restaurant_rating: 5, driver_rating: 4,
+  { _id: 481, status: "delivered" },
+  { $set: { review: { review_id: 401, restaurant_rating: 5, driver_rating: 4,
                       comment: "Very good!", created_at: new Date() } } }
 );
 
+//After: the order 481 has the review
+db.orders.findOne({ _id: 481 }, { status: 1, review: 1 });
 
 //DELETE operations
-//18. Restaurant 251 removes the Tiramisu from its menu.
+//18. Restaurant 21 removes the Tiramisu from its menu.
+
+//Before: Restaurant 21 has Tiramisu in its menu
+db.restaurants.findOne({ _id: 21 }, { name: 1, "menu.name": 1 });
+
 db.restaurants.updateOne(
-  { _id: 1 },
+  { _id: 21 },
   { $pull: { menu: { name: "Tiramisu" } } }
 );
 
-//19. Driver 208 removes the consent to share the location.
+//After: Tiramisu was removed from the menu
+db.restaurants.findOne({ _id: 21 }, { name: 1, "menu.name": 1 });
+
+//19. Driver 272 removes the consent to share the location.
+
+//Before: Driver 272 shares the location 
+db.drivers.findOne({ _id: 272 }, { location_sharing_consent: 1, last_location: 1 });
+db.driver_locations.countDocuments({ driver_account_id: 272 });
+
 db.drivers.updateOne(
-  { _id: 208 },
+  { _id: 272 },
   { $set: { location_sharing_consent: false, last_location: null } }
 );
 
-db.driver_locations.deleteMany({ driver_account_id: 208 });
+db.driver_locations.deleteMany({ driver_account_id: 272 });
 
-
+//After: we do not have consent anymore, last_location is null and the GPS points got deleted
+db.drivers.findOne({ _id: 272 }, { location_sharing_consent: 1, last_location: 1 });
+db.driver_locations.countDocuments({ driver_account_id: 272 });
